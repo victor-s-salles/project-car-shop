@@ -16,7 +16,6 @@ class CarController {
 
   public async insertOneCar() {
     const car = this.req.body;
-    console.log('tESTE');
 
     try {
       const newCar = await this.service.insertOneCar(car);
