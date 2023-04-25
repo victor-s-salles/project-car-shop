@@ -3,9 +3,9 @@ interface ICar {
   model: string;
   year: number;
   color: string;
-  status?: boolean;
+  status: boolean;
   buyValue: number;
-  doorsQts: number;
+  doorsQty: number;
   seatsQty: number;
 }
 
