@@ -22,6 +22,7 @@ class CarService {
     const carList = result?.map((car) => this.createCarDomain(car));
     return carList;
   }
+
   public async findById(id: string) {
     const carODM = new CarODM();
     const result = await carODM.findById(id);

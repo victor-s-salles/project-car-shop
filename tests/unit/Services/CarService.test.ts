@@ -32,4 +32,7 @@ describe('Testa a camada CarService', function () {
 
     expect(result).to.be.deep.equal(newCarPostResponse);
   });
+  afterEach(function () {
+    sinon.restore();
+  });
 });
