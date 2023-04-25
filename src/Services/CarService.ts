@@ -3,18 +3,32 @@ import ICar from '../Interfaces/ICar';
 import CarODM from '../Models/CarODM';
 
 class CarService {
-  private createCarDomain(car: ICar | undefined): Car | undefined {
+  private createCarDomain(car: ICar | undefined) {
     if (car) {
       return new Car(car);
     }
   }
 
-  public async insertOneCar(car: ICar) {
+  public async insertOneCar(car: ICar): Promise<Car | undefined> {
     const carODM = new CarODM();
     const result = await carODM.create(car);
 
     return this.createCarDomain(result);
   }
+
+  public async findAll(): Promise<(Car | undefined)[] | undefined> {
+    const carODM = new CarODM();
+    const result = await carODM.findAll();
+
+    const carList = result?.map((car) => this.createCarDomain(car));
+    return carList;
+  }
+  // public async findById(id: string): Promise<Car | null> {
+  //   const carODM = new CarODM();
+  //   const result = await carODM.findById(id);
+
+  //   return this.createCarDomain(result);
+  // }
 }
 
 export default CarService;
