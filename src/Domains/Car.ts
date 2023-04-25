@@ -18,10 +18,7 @@ class Car {
     this.buyValue = car.buyValue;
     this.doorsQty = car.doorsQty;
     this.seatsQty = car.seatsQty;
-    
-    if (car.status) {
-      this.status = car.status;
-    } this.status = false;
+    this.status = car.status || false;
   }
 
   public getId() {

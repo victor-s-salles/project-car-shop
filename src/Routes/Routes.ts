@@ -5,6 +5,8 @@ const routes = Router();
 
 routes.post('/cars', (req, res, next) => new CarController(req, res, next).insertOneCar());
 
+routes.get('/cars/:id', (req, res, next) => new CarController(req, res, next).findById());
+
 routes.get('/cars', (req, res, next) => new CarController(req, res, next).findAll());
 
 export default routes;
