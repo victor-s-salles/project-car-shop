@@ -25,39 +25,39 @@ class MotorcycleController {
     return false;
   }
 
-  public async insertOneCar() {
-    const car = this.req.body;
+  public async insertOneMotorcycle() {
+    const motorcycle = this.req.body;
 
     try {
-      const newCar = await this.service.insertOneMotorcycle(car);
-      return this.res.status(201).json(newCar);
+      const newMotorcycle = await this.service.insertOneMotorcycle(motorcycle);
+      return this.res.status(201).json(newMotorcycle);
     } catch (error) {
       this.next(error);
     }
   }
-  //   public async findAll() {
-  //     try {
-  //       const carList = await this.service.findAll();
-  //       return this.res.status(200).json(carList);
-  //     } catch (error) {
-  //       this.next(error);
-  //     }
-  //   }
-  //   public async findById() {
-  //     const { id } = this.req.params;
-  //     if (!this.isValidId(id)) {
-  //       return this.res.status(422).json({ message: 'Invalid mongo id' });
-  //     }
+  public async findAll() {
+    try {
+      const motorcycleList = await this.service.findAll();
+      return this.res.status(200).json(motorcycleList);
+    } catch (error) {
+      this.next(error);
+    }
+  }
+  public async findById() {
+    const { id } = this.req.params;
+    if (!this.isValidId(id)) {
+      return this.res.status(422).json({ message: 'Invalid mongo id' });
+    }
 
-//     try {
-//       const car = await this.service.findById(id);
-//       if (!car) {
-//         return this.res.status(404).json({ message: 'Car not found' });
-//       }
-//       return this.res.status(200).json(car);
-//     } catch (error) {
-//       this.next(error);
-//     }
-//   }
+    try {
+      const motorcycle = await this.service.findById(id);
+      if (!motorcycle) {
+        return this.res.status(404).json({ message: 'Motorcycle not found' });
+      }
+      return this.res.status(200).json(motorcycle);
+    } catch (error) {
+      this.next(error);
+    }
+  }
 }
 export default MotorcycleController;

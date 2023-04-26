@@ -10,9 +10,13 @@ routes.get('/cars/:id', (req, res, next) => new CarController(req, res, next).fi
 
 routes.get('/cars', (req, res, next) => new CarController(req, res, next).findAll());
 
-routes.post(
-  '/motorcycles', 
-  (req, res, next) => new MotorcycleController(req, res, next).insertOneCar(),
-);
+routes.post('/motorcycles', (req, res, next) => 
+  new MotorcycleController(req, res, next).insertOneMotorcycle());
+
+routes.get('/motorcycles/:id', (req, res, next) => 
+  new MotorcycleController(req, res, next).findById());
+
+routes.get('/motorcycles', (req, res, next) => 
+  new MotorcycleController(req, res, next).findAll());
 
 export default routes;
