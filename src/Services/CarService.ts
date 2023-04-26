@@ -23,7 +23,7 @@ class CarService {
     return carList;
   }
 
-  public async findById(id: string) {
+  public async findById(id: string): Promise <Car | undefined> {
     const carODM = new CarODM();
     const result = await carODM.findById(id);
 
