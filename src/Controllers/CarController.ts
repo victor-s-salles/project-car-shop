@@ -67,9 +67,8 @@ class CarController {
       return this.res.status(422).json({ message: 'Invalid mongo id' });
     }
 
-    const car = this.req.body;
-
     try {
+      const car = this.req.body;
       const updatedCar = await this.service.updateOne(id, car);
       
       if (!updatedCar) {
