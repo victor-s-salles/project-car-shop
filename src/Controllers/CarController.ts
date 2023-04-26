@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { ObjectId } from 'mongodb';
+
 import CarService from '../Services/CarService';
 
 class CarController {
@@ -55,6 +56,26 @@ class CarController {
         return this.res.status(404).json({ message: 'Car not found' });
       }
       return this.res.status(200).json(car);
+    } catch (error) {
+      this.next(error);
+    }
+  }
+
+  public async updateById() {
+    const { id } = this.req.params;
+    if (!this.isValidId(id)) {
+      return this.res.status(422).json({ message: 'Invalid mongo id' });
+    }
+
+    const car = this.req.body;
+
+    try {
+      const updatedCar = await this.service.updateOne(id, car);
+      
+      if (!updatedCar) {
+        return this.res.status(404).json({ message: 'Car not found' });
+      }
+      return this.res.status(200).json(updatedCar);
     } catch (error) {
       this.next(error);
     }
