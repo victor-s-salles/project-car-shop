@@ -14,6 +14,10 @@ class MotorcycleController {
     this.next = next;
     this.service = new MotorcycleService();
   } 
+
+  private InvalidMongoIdError = 'Invalid mongo id';
+  private MotorcycleNotFoundError = 'Motorcycle not found';
+  
   private isValidId(id: string):boolean {
     try {
       if (new ObjectId(id).toString() === id) {
@@ -46,13 +50,13 @@ class MotorcycleController {
   public async findById() {
     const { id } = this.req.params;
     if (!this.isValidId(id)) {
-      return this.res.status(422).json({ message: 'Invalid mongo id' });
+      return this.res.status(422).json({ message: this.InvalidMongoIdError });
     }
 
     try {
       const motorcycle = await this.service.findById(id);
       if (!motorcycle) {
-        return this.res.status(404).json({ message: 'Motorcycle not found' });
+        return this.res.status(404).json({ message: this.MotorcycleNotFoundError });
       }
       return this.res.status(200).json(motorcycle);
     } catch (error) {
@@ -63,7 +67,7 @@ class MotorcycleController {
   public async updateById() {
     const { id } = this.req.params;
     if (!this.isValidId(id)) {
-      return this.res.status(422).json({ message: 'Invalid mongo id' });
+      return this.res.status(422).json({ message: this.InvalidMongoIdError });
     }
 
     try {
@@ -71,9 +75,26 @@ class MotorcycleController {
       const updateMotorcycle = await this.service.updateOne(id, motorcycle);
 
       if (!updateMotorcycle) {
-        return this.res.status(404).json({ message: 'Motorcycle not found' });
+        return this.res.status(404).json({ message: this.MotorcycleNotFoundError });
       }
       return this.res.status(200).json(updateMotorcycle);
+    } catch (error) {
+      this.next(error);
+    }
+  }
+  public async removeById() {
+    const { id } = this.req.params;
+
+    if (!this.isValidId(id)) {
+      return this.res.status(422).json({ message: this.InvalidMongoIdError });
+    }
+
+    try {
+      const removeCar = await this.service.removeOne(id);
+      if (!removeCar) {
+        return this.res.status(404).json({ message: this.MotorcycleNotFoundError });
+      }
+      return this.res.sendStatus(204);
     } catch (error) {
       this.next(error);
     }

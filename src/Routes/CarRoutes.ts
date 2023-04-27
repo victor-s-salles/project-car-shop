@@ -16,6 +16,7 @@ routes.put('/:id', (req, res, next) =>
 routes.get('/', (req, res, next) => 
   new CarController(req, res, next).findAll());
 
-routes.delete('/:id', (req, res, next) => new CarController(req, res, next).removeById());
+routes.delete('/:id', (req, res, next) => 
+  new CarController(req, res, next).removeById());
 
 export default routes;

@@ -36,15 +36,11 @@ class CarService {
 
     return this.createCarDomain(result);
   }
-  public async removeOne(id:string): Promise<boolean> {
+  public async removeOne(id:string): Promise <Car | undefined> {
     const carODM = new CarODM();
     const result = await carODM.remove(id);
-    console.log(result);
 
-    if (result) {
-      return true;
-    }
-    return false;
+    return this.createCarDomain(result);
   }
 }
 export default CarService;
