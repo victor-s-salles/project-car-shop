@@ -12,6 +12,28 @@ export const newMotorCyclesPost = {
   category: 'Street' as CategoryTypes,
   engineCapacity: 600,
 };
+export const newMotorCyclesUpdatedPost = {
+  model: modelNameOne,
+  year: 2010,
+  color: 'Yellow',
+  status: true,
+  buyValue: 30.000,
+  category: 'Street' as CategoryTypes,
+  engineCapacity: 600,
+  id: '6348513f34c397abcad040b2',
+};
+
+export const newMotorCyclesMongoUpdatedResponse = {
+  model: modelNameOne,
+  year: 2010,
+  color: 'Yellow',
+  status: true,
+  buyValue: 30.000,
+  category: 'Street' as CategoryTypes,
+  engineCapacity: 600,
+  id: '6348513f34c397abcad040b2',
+  __v: 0,
+};
   
 export const newMotorCyclesMongoResponse = {
   model: modelNameOne,

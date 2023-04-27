@@ -4,7 +4,9 @@ import { Model } from 'mongoose';
 
 import MotorcycleService from '../../../src/Services/MotorcycleService';
 import { MotorCyclesListGetResponse, MotorCyclesListMongoResponse, newMotorCyclesMongoResponse, 
-  newMotorCyclesPost, newMotorCyclesPostResponse } from './mocks/MotorcyclesMock';
+  newMotorCyclesMongoUpdatedResponse, 
+  newMotorCyclesPost, newMotorCyclesPostResponse, 
+  newMotorCyclesUpdatedPost } from './mocks/MotorcyclesMock';
 
 describe('Testa a camada MotorcycleService', function () {
   it('Cadastrando nova moto', async function () {
@@ -29,6 +31,24 @@ describe('Testa a camada MotorcycleService', function () {
 
     const service = new MotorcycleService();
     const result = await service.findById('6348513f34c397abcad040b2');
+
+    expect(result).to.be.deep.equal(newMotorCyclesPostResponse);
+  });
+
+  it('Atualizando uma moto por id', async function () {
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(newMotorCyclesMongoUpdatedResponse);
+
+    const service = new MotorcycleService();
+    const result = await service.updateOne('6348513f34c397abcad040b2', newMotorCyclesUpdatedPost);
+
+    expect(result).to.be.deep.equal(newMotorCyclesUpdatedPost);
+  });
+
+  it('Remover uma moto por id', async function () {
+    sinon.stub(Model, 'findByIdAndDelete').resolves(newMotorCyclesMongoResponse);
+
+    const service = new MotorcycleService();
+    const result = await service.removeOne('6348513f34c397abcad040b2');
 
     expect(result).to.be.deep.equal(newMotorCyclesPostResponse);
   });
