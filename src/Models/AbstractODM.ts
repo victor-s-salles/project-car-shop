@@ -21,8 +21,11 @@ abstract class AbstractODM <T> {
   public async findById(id: string): Promise<T | null> {
     return this.model.findById(id);
   }
-  public async update(id: string, obj: UpdateQuery<T>) {
+  public async update(id: string, obj: UpdateQuery<T>): Promise<T | null> {
     return this.model.findByIdAndUpdate(id, { ...obj }, { new: true });
+  }
+  public async remove(id: string) : Promise<T | null> {
+    return this.model.findByIdAndDelete(id);
   }
 }
 
