@@ -36,7 +36,7 @@ Para rodar o projeto localmente, é necessário ter instalado o Node.js e o Mong
 
 1. Clone o repositório para sua máquina:
 ```
-git clone https://github.com/tryber/sd-025-b-project-car-shop.git
+git clone https://github.com/victor-s-salles/project-car-shop
 ```
 
 2. Acesse o diretório do projeto:
@@ -54,12 +54,17 @@ npm install
 docker-compose up -d
 ```
 
-5. Inicie a aplicação dentro do container docker criado
+5. Entre no container criado:
+```
+docker exec -it car_shop bash
+```
+
+6. Inicie a aplicação dentro do container docker criado
 ```
 npm run dev
 ```
 
-6. Acesse a aplicação em seu cliente, através do endereço:
+7. Acesse a aplicação em seu cliente, através do endereço:
 ```
 http://localhost:3001
 ```
