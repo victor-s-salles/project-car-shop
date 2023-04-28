@@ -7,23 +7,28 @@ Este repositório contém o projeto "Car Shop", desenvolvido como parte do curso
 
 ## Descrição detalhada
 
-O projeto "Car Shop" é uma aplicação web de uma loja de carros, onde é possível cadastrar novos carros, listar carros já cadastrados, atualizar informações dos carros e remover carros. A aplicação também permite o cadastro de usuários e a realização de login para acesso às funcionalidades do sistema.
+O projeto "Car Shop" é uma aplicação web de uma loja de carros e motos, onde é possível cadastrar novos veículos, listar veículos já cadastrados, atualizar informações dos veículos e remover veículos.
 
 ## Funcionalidades
 
-- Cadastro de novos carros
-- Listagem de carros cadastrados
-- Atualização de informações dos carros
-- Remoção de carros
-- Cadastro de usuários
-- Login de usuários
+- Cadastro de novos veículos
+- Listagem de veículos cadastrados
+- Atualização de informações dos veículos
+- Remoção de veículos
+
 
 ## Tecnologias utilizadas
 
 - Node.js
+- TypeScript
 - Express
 - MongoDB
 - Mongoose
+- Docker / Docker Compose (1.29^)
+- Jest
+- Chai
+- Sinon
+- Eslint
 
 ## Instalação do projeto localmente
 
@@ -44,15 +49,22 @@ cd sd-025-b-project-car-shop
 npm install
 ```
 
-4. Inicie o servidor local:
+4. Inicie o servidor docker:
 ```
-npm start
+docker-compose up -d
 ```
 
-5. Acesse a aplicação em seu navegador, através do endereço:
+5. Inicie a aplicação dentro do container docker criado
 ```
-http://localhost:3000
+npm run dev
 ```
+
+6. Acesse a aplicação em seu cliente, através do endereço:
+```
+http://localhost:3001
+```
+
+Obs: Há um arquivo .env para configurar outros valores caso necessário 
 
 ## Endpoints da API
 
@@ -65,8 +77,8 @@ http://localhost:3000
     - `color` (string) - Cor do carro
     - `status` (boolean) - status que define se um veículo pode ou não ser comprado (este atributo deve ser opcional e se não passado, deve ser false)
     - `buyValue` (number) - Valor de compra do veículo
-    - `buyValue` (number) - Valor de compra do veículo
-    - `buyValue` (number) - Valor de compra do veículo
+    - `doorsQty` (number) - Quantidade de portas de um carro
+    - `seatsQty` (number) - Quantidade de assentos de um carro
   - Respostas:
     - `201` - Carro cadastrado com sucesso
     - `404` - Requisição inválida, carro não encontrdo
@@ -92,20 +104,38 @@ http://localhost:3000
 - **PUT** `/cars/:id` - Atualiza as informações de um carro específico
   - Parâmetros:
     - `id` (string) - ID do carro a ser atualizado
-    - `model` (string) - Novo modelo do carro
-    - `year` (number) - Novo ano do carro
-    - `manufacturer` (string) - Novo fabricante do carro
-    - `price` (number) - Novo preço do carro
+    - `model` (string) - Modelo do carro
+    - `year` (number) - Ano do carro
+    - `color` (string) - Cor do carro
+    - `status` (boolean) - status que define se um veículo pode ou não ser comprado (este atributo deve ser opcional e se não passado, deve ser false)
+    - `buyValue` (number) - Valor de compra do veículo
+    - `doorsQty` (number) - Quantidade de portas de um carro
+    - `seatsQty` (number) - Quantidade de assentos de um carro
   - Respostas:
     - `200` - Carro atualizado com sucesso
-    - `400` - Requisição inválida, falta de parâmetros obrigatórios
-    - `401` - Usuário não autenticado
+    - `422` - Requisição inválida, falta de parâmetros obrigatórios
     - `404` - Carro não encontrado
     - `500` - Erro interno do servidor
 
 - **DELETE** `/cars/:id` - Remove um carro específico do sistema
   - Parâmetros:
     - `id` (string) - ID do carro a ser removido
+
+
+
+### Motos
+
+- Se aplicam as mesmas regras dos endpoints para carros, diferindo apenas nos parametros:
+
+ - Parâmetros:
+    - `id` (string) - ID da moto desejada
+    - `model` (string) - Modelo da moto
+    - `year` (number) - Ano da moto
+    - `color` (string) - Cor da moto
+    - `status` (boolean) - status que define se um veículo pode ou não ser comprado (este atributo deve ser opcional e se não passado, deve ser false)
+    - `buyValue` (number) - Valor de compra do veículo
+    - `category` (string) - Categoria da moto (opções: Street, Custom ou Trail)
+    - `engineCapacity` (number) - Capacidade do motor
  
 
 ## Agradecimentos
