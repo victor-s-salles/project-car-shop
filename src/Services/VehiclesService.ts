@@ -16,7 +16,7 @@
 //     this.vehicleInterface = vehicleInterface;
 //     this.vehicleODM = vehicleODM;
 //   }
-//   private createCarDomain(car: vehicleInterface.ThisParameterType | null) {
+//   private createCarDomain(car) {
 //     if (car) {
 //       return this.vehicleDomain(car);
 //     }
