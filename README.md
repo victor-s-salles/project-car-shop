@@ -20,15 +20,10 @@ O projeto "Car Shop" é uma aplicação web de uma loja de carros, onde é poss�
 
 ## Tecnologias utilizadas
 
-- HTML
-- CSS
-- JavaScript
 - Node.js
 - Express
 - MongoDB
 - Mongoose
-- JWT
-- bcrypt
 
 ## Instalação do projeto localmente
 
